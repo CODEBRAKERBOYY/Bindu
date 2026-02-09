@@ -7,6 +7,9 @@ Run with: bindu examples/agno_example.py
 Or set environment variables directly and run: python examples/agno_example.py
 """
 
+from dotenv import load_dotenv
+load_dotenv()  # Load environment variables from .env file
+
 from bindu.penguin.bindufy import bindufy
 from agno.agent import Agent
 from agno.tools.duckduckgo import DuckDuckGoTools
