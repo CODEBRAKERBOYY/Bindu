@@ -90,6 +90,12 @@ config = {
     "name": "Oracle_of_Value",
     "description": "I provide high-value market insights and investment recommendations. Payment required upfront.",
     "deployment": {"url": "http://localhost:3773", "expose": True},
+     "execution_cost": {
+        "amount": "0.01",  # Cost of one interaction
+        "token": "USDC",  # Currency
+        "network": "base-sepolia",  # Network (Base Testnet)
+        "pay_to_address": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",  # Dummy ETH Address
+    },
     "skills": ["skills/premium-market-insight-skill"],
     "storage": {"type": "memory"},
     "scheduler": {"type": "memory"},
