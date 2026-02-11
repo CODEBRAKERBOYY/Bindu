@@ -84,6 +84,32 @@ did:bindu:agent?v=1     # Wrong: query parameters not allowed
 
 ## How DIDs Work: A Complete Picture
 
+```mermaid
+sequenceDiagram
+    participant Agent
+    participant KeyStore
+    participant Registry
+    participant Verifier
+
+    Note over Agent,KeyStore: 1. Key Generation (bindufy)
+    Agent->>KeyStore: Generate Ed25519 key pair
+    KeyStore-->>Agent: private.pem + public.pem
+
+    Note over Agent,Registry: 2. DID Creation
+    Agent->>Agent: Create DID from<br/>author:agent_name:agent_id
+    Agent->>Agent: Generate DID Document<br/>(public key + metadata)
+    Agent->>Registry: Publish DID Document
+
+    Note over Verifier,Registry: 3. DID Resolution
+    Verifier->>Registry: Resolve DID
+    Registry-->>Verifier: DID Document (public key)
+
+    Note over Agent,Verifier: 4. Signature Verification
+    Agent->>Agent: Sign message with private key
+    Agent->>Verifier: Send message + signature
+    Verifier->>Verifier: Verify signature with public key
+```
+
 ### The DID Lifecycle
 
 ```
