@@ -95,16 +95,18 @@ sequenceDiagram
     Agent->>KeyStore: Generate Ed25519 key pair
     KeyStore-->>Agent: private.pem + public.pem
 
-    Note over Agent,Registry: 2. DID Creation
+    Note over Agent: 2. DID Creation
     Agent->>Agent: Create DID from<br/>author:agent_name:agent_id
     Agent->>Agent: Generate DID Document<br/>(public key + metadata)
+
+    Note over Agent,Registry: 3. Publish to Registry
     Agent->>Registry: Publish DID Document
 
-    Note over Verifier,Registry: 3. DID Resolution
+    Note over Verifier,Registry: 4. DID Resolution
     Verifier->>Registry: Resolve DID
     Registry-->>Verifier: DID Document (public key)
 
-    Note over Agent,Verifier: 4. Signature Verification
+    Note over Agent,Verifier: 5. Signature Verification
     Agent->>Agent: Sign message with private key
     Agent->>Verifier: Send message + signature
     Verifier->>Verifier: Verify signature with public key
